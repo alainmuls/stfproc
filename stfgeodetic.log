@@ -1,0 +1,197 @@
+INFO: [33mstfgeodetic.py[0m - [32mcheckExistenceArgs[0m: working diretory is /home/amuls/Nextcloud/E6BEL/19255/stf
+INFO: [33mstfgeodetic.py[0m - [32mcheckExistenceArgs[0m: changed to directory /home/amuls/Nextcloud/E6BEL/19255/stf
+INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: reading file STNK2550.19__PVTGeodetic_2.stf
+INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: head of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#13432)
+   WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase
+0       2070  386288.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+1       2070  386289.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+2       2070  386290.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+3       2070  386291.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+4       2070  386292.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+5       2070  386293.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+6       2070  386294.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+7       2070  386295.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+8       2070  386296.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+9       2070  386297.0     0      0      1   NaN            NaN             NaN        NaN      NaN      NaN      NaN            NaN              NaN          NaN             NaN      NaN            NaN       NaN    NaN         NaN           0           0          0         0
+INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: tail of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#13432)
+       WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase
+13422       2070  400108.0     1      0      0   6.0       0.887496        0.076865   124.6624  -5.3360 -10.6316  -0.1463       0.083336         0.014105          NaN             NaN      NaN        47.3522    243.35    1.0         1.0      327680           0          5         0
+13423       2070  400109.0     1      0      0   6.0       0.887494        0.076863   125.1287  -5.7674 -10.3897  -0.0682       0.083352         0.014139          NaN             NaN      NaN        47.3522    240.97    1.0         1.0      327680           0          5         0
+13424       2070  400110.0     1      0      0   6.0       0.887493        0.076861   125.2959  -6.0742 -10.1322  -0.1439       0.083367         0.014182          NaN             NaN      NaN        47.3522    239.06    1.0         1.0      327680           0          5         0
+13425       2070  400111.0     1      0      0   6.0       0.887492        0.076858   125.3760  -6.1964 -10.0896  -0.0433       0.083382         0.014228          NaN             NaN      NaN        47.3522    238.44    1.0         1.0      327680           0          5         0
+13426       2070  400112.0     1      0      0   6.0       0.887491        0.076856   125.0496  -6.4588  -9.9246  -0.1523       0.083396         0.014190          NaN             NaN      NaN        47.3522    236.94    1.0         1.0      327680           0          5         0
+13427       2070  400113.0     1      0      0   6.0       0.887490        0.076853   124.5134  -6.5779 -10.1971  -0.1065       0.083409         0.014352          NaN             NaN      NaN        47.3522    237.18    1.0         1.0      327680           0          5         0
+13428       2070  400114.0     1      0      0   6.0       0.887489        0.076851   123.9993  -6.8799 -10.3910  -0.1478       0.083422         0.014209          NaN             NaN      NaN        47.3522    236.49    1.0         1.0      327680           0          5         0
+13429       2070  400115.0     1      0      0   6.0       0.887488        0.076848   123.5344  -7.0333 -10.3611  -0.1477       0.083435         0.014149          NaN             NaN      NaN        47.3522    235.83    1.0         1.0      327680           0          5         0
+13430       2070  400116.0     1      0      0   6.0       0.887487        0.076846   123.0861  -7.3519 -10.1106  -0.1386       0.083449         0.014151          NaN             NaN      NaN        47.3522    233.98    1.0         1.0      327680           0          5         0
+13431       2070  400117.0     1      0      0   4.0       0.887485        0.076844   123.2050  -8.4962  -8.6112   0.7346       0.083464         0.017623          NaN             NaN      NaN        47.3522    225.39    1.0         1.0      327680           0          4         0
+INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: head of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#9724)
+      WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase
+1986       2070  388516.0     1      0    127   4.0       0.889984        0.075359   217.1598   0.0140   0.1377   0.2653     -44.576251         0.015162          NaN             NaN      NaN        47.3214       NaN    1.0         1.0      327680           0          4         0
+1987       2070  388517.0     1      0      0   4.0       0.889984        0.075359   216.6032   0.0063   0.2807   0.5744     -44.576238         0.016198          NaN             NaN      NaN        47.3214     88.96    1.0         1.0      327680           0          4         0
+1988       2070  388518.0     1      0      0   4.0       0.889984        0.075359   216.5355  -0.0106   0.3728   0.7943       0.423776         0.016803          NaN             NaN      NaN        47.3214     90.56    1.0         1.0      327680           0          4         0
+1989       2070  388519.0     1      0      0   4.0       0.889984        0.075359   216.5912  -0.0090   0.3642   0.7747       0.423791         0.016814          NaN             NaN      NaN        47.3214     89.94    1.0         1.0      327680           0          4         0
+1990       2070  388520.0     1      0      0   4.0       0.889984        0.075359   216.7827  -0.0136   0.3833   0.7961       0.423805         0.016854          NaN             NaN      NaN        47.3214     90.07    1.0         1.0      327680           0          4         0
+1991       2070  388521.0     1      0      0   4.0       0.889984        0.075359   217.0970   0.0097   0.3965   0.8269       0.423821         0.016957          NaN             NaN      NaN        47.3214     89.58    1.0         1.0      327680           0          4         0
+1992       2070  388522.0     1      0      0   4.0       0.889984        0.075359   217.5538  -0.0010   0.4263   0.9276       0.423836         0.017240          NaN             NaN      NaN        47.3214     90.41    1.0         1.0      327680           0          4         0
+1993       2070  388523.0     1      0      0   4.0       0.889984        0.075359   217.9764  -0.0051   0.4293   0.9309       0.423852         0.017267          NaN             NaN      NaN        47.3214     90.38    1.0         1.0      327680           0          4         0
+1994       2070  388524.0     1      0      0   4.0       0.889984        0.075359   218.4574   0.0181   0.4418   0.9430       0.423868         0.017295          NaN             NaN      NaN        47.3214     90.30    1.0         1.0      327680           0          4         0
+1995       2070  388525.0     1      0      0   4.0       0.889984        0.075360   218.9243  -0.0051   0.4383   0.9171       0.423884         0.017252          NaN             NaN      NaN        47.3214     90.62    1.0         1.0      327680           0          4         0
+INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: tail of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#9724)
+       WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase
+13422       2070  400108.0     1      0      0   6.0       0.887496        0.076865   124.6624  -5.3360 -10.6316  -0.1463       0.083336         0.014105          NaN             NaN      NaN        47.3522    243.35    1.0         1.0      327680           0          5         0
+13423       2070  400109.0     1      0      0   6.0       0.887494        0.076863   125.1287  -5.7674 -10.3897  -0.0682       0.083352         0.014139          NaN             NaN      NaN        47.3522    240.97    1.0         1.0      327680           0          5         0
+13424       2070  400110.0     1      0      0   6.0       0.887493        0.076861   125.2959  -6.0742 -10.1322  -0.1439       0.083367         0.014182          NaN             NaN      NaN        47.3522    239.06    1.0         1.0      327680           0          5         0
+13425       2070  400111.0     1      0      0   6.0       0.887492        0.076858   125.3760  -6.1964 -10.0896  -0.0433       0.083382         0.014228          NaN             NaN      NaN        47.3522    238.44    1.0         1.0      327680           0          5         0
+13426       2070  400112.0     1      0      0   6.0       0.887491        0.076856   125.0496  -6.4588  -9.9246  -0.1523       0.083396         0.014190          NaN             NaN      NaN        47.3522    236.94    1.0         1.0      327680           0          5         0
+13427       2070  400113.0     1      0      0   6.0       0.887490        0.076853   124.5134  -6.5779 -10.1971  -0.1065       0.083409         0.014352          NaN             NaN      NaN        47.3522    237.18    1.0         1.0      327680           0          5         0
+13428       2070  400114.0     1      0      0   6.0       0.887489        0.076851   123.9993  -6.8799 -10.3910  -0.1478       0.083422         0.014209          NaN             NaN      NaN        47.3522    236.49    1.0         1.0      327680           0          5         0
+13429       2070  400115.0     1      0      0   6.0       0.887488        0.076848   123.5344  -7.0333 -10.3611  -0.1477       0.083435         0.014149          NaN             NaN      NaN        47.3522    235.83    1.0         1.0      327680           0          5         0
+13430       2070  400116.0     1      0      0   6.0       0.887487        0.076846   123.0861  -7.3519 -10.1106  -0.1386       0.083449         0.014151          NaN             NaN      NaN        47.3522    233.98    1.0         1.0      327680           0          5         0
+13431       2070  400117.0     1      0      0   4.0       0.887485        0.076844   123.2050  -8.4962  -8.6112   0.7346       0.083464         0.017623          NaN             NaN      NaN        47.3522    225.39    1.0         1.0      327680           0          4         0
+INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: read STF file STNK2550.19__PVTGeodetic_2.stf, added UTM coordiantes and GNSS time
+INFO: [33mstfgeodetic.py[0m - [32mmain[0m: head of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#9724)
+   index  WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase        lat       lon                time          UTM.E         UTM.N  UTM.Z UTM.L          dist
+0   1986       2070  388516.0     1      0    127   4.0       0.889984        0.075359   217.1598   0.0140   0.1377   0.2653     -44.576251         0.015162          NaN             NaN      NaN        47.3214       NaN    1.0         1.0      327680           0          4         0  50.992302  4.317769 2019-09-12 11:55:16  592480.934486  5.649795e+06     31     U  25060.369748
+1   1987       2070  388517.0     1      0      0   4.0       0.889984        0.075359   216.6032   0.0063   0.2807   0.5744     -44.576238         0.016198          NaN             NaN      NaN        47.3214     88.96    1.0         1.0      327680           0          4         0  50.992302  4.317766 2019-09-12 11:55:17  592480.744562  5.649795e+06     31     U  25060.277395
+2   1988       2070  388518.0     1      0      0   4.0       0.889984        0.075359   216.5355  -0.0106   0.3728   0.7943       0.423776         0.016803          NaN             NaN      NaN        47.3214     90.56    1.0         1.0      327680           0          4         0  50.992302  4.317768 2019-09-12 11:55:18  592480.893999  5.649795e+06     31     U  25060.382357
+3   1989       2070  388519.0     1      0      0   4.0       0.889984        0.075359   216.5912  -0.0090   0.3642   0.7747       0.423791         0.016814          NaN             NaN      NaN        47.3214     89.94    1.0         1.0      327680           0          4         0  50.992302  4.317769 2019-09-12 11:55:19  592480.930604  5.649795e+06     31     U  25060.383209
+4   1990       2070  388520.0     1      0      0   4.0       0.889984        0.075359   216.7827  -0.0136   0.3833   0.7961       0.423805         0.016854          NaN             NaN      NaN        47.3214     90.07    1.0         1.0      327680           0          4         0  50.992302  4.317770 2019-09-12 11:55:20  592481.003757  5.649795e+06     31     U  25060.396336
+5   1991       2070  388521.0     1      0      0   4.0       0.889984        0.075359   217.0970   0.0097   0.3965   0.8269       0.423821         0.016957          NaN             NaN      NaN        47.3214     89.58    1.0         1.0      327680           0          4         0  50.992302  4.317772 2019-09-12 11:55:21  592481.138894  5.649795e+06     31     U  25060.442892
+6   1992       2070  388522.0     1      0      0   4.0       0.889984        0.075359   217.5538  -0.0010   0.4263   0.9276       0.423836         0.017240          NaN             NaN      NaN        47.3214     90.41    1.0         1.0      327680           0          4         0  50.992302  4.317775 2019-09-12 11:55:22  592481.342567  5.649795e+06     31     U  25060.527457
+7   1993       2070  388523.0     1      0      0   4.0       0.889984        0.075359   217.9764  -0.0051   0.4293   0.9309       0.423852         0.017267          NaN             NaN      NaN        47.3214     90.38    1.0         1.0      327680           0          4         0  50.992302  4.317777 2019-09-12 11:55:23  592481.531917  5.649795e+06     31     U  25060.602870
+8   1994       2070  388524.0     1      0      0   4.0       0.889984        0.075359   218.4574   0.0181   0.4418   0.9430       0.423868         0.017295          NaN             NaN      NaN        47.3214     90.30    1.0         1.0      327680           0          4         0  50.992302  4.317781 2019-09-12 11:55:24  592481.744741  5.649795e+06     31     U  25060.691957
+9   1995       2070  388525.0     1      0      0   4.0       0.889984        0.075360   218.9243  -0.0051   0.4383   0.9171       0.423884         0.017252          NaN             NaN      NaN        47.3214     90.62    1.0         1.0      327680           0          4         0  50.992302  4.317784 2019-09-12 11:55:25  592481.956036  5.649795e+06     31     U  25060.779930
+INFO: [33mstfgeodetic.py[0m - [32mmain[0m: tail of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#9724)
+      index  WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase        lat       lon                time          UTM.E         UTM.N  UTM.Z UTM.L          dist
+9714  13422       2070  400108.0     1      0      0   6.0       0.887496        0.076865   124.6624  -5.3360 -10.6316  -0.1463       0.083336         0.014105          NaN             NaN      NaN        47.3522    243.35    1.0         1.0      327680           0          5         0  50.849750  4.404060 2019-09-12 15:08:28  598838.166075  5.634056e+06     31     U  41980.105196
+9715  13423       2070  400109.0     1      0      0   6.0       0.887494        0.076863   125.1287  -5.7674 -10.3897  -0.0682       0.083352         0.014139          NaN             NaN      NaN        47.3522    240.97    1.0         1.0      327680           0          5         0  50.849681  4.403928 2019-09-12 15:08:29  598829.011212  5.634048e+06     31     U  41983.185709
+9716  13424       2070  400110.0     1      0      0   6.0       0.887493        0.076861   125.2959  -6.0742 -10.1322  -0.1439       0.083367         0.014182          NaN             NaN      NaN        47.3522    239.06    1.0         1.0      327680           0          5         0  50.849621  4.403787 2019-09-12 15:08:30  598819.254726  5.634041e+06     31     U  41985.203755
+9717  13425       2070  400111.0     1      0      0   6.0       0.887492        0.076858   125.3760  -6.1964 -10.0896  -0.0433       0.083382         0.014228          NaN             NaN      NaN        47.3522    238.44    1.0         1.0      327680           0          5         0  50.849563  4.403645 2019-09-12 15:08:31  598809.395120  5.634035e+06     31     U  41986.900048
+9718  13426       2070  400112.0     1      0      0   6.0       0.887491        0.076856   125.0496  -6.4588  -9.9246  -0.1523       0.083396         0.014190          NaN             NaN      NaN        47.3522    236.94    1.0         1.0      327680           0          5         0  50.849503  4.403516 2019-09-12 15:08:32  598800.448008  5.634028e+06     31     U  41989.264682
+9719  13427       2070  400113.0     1      0      0   6.0       0.887490        0.076853   124.5134  -6.5779 -10.1971  -0.1065       0.083409         0.014352          NaN             NaN      NaN        47.3522    237.18    1.0         1.0      327680           0          5         0  50.849439  4.403379 2019-09-12 15:08:33  598790.936588  5.634020e+06     31     U  41991.771541
+9720  13428       2070  400114.0     1      0      0   6.0       0.887489        0.076851   123.9993  -6.8799 -10.3910  -0.1478       0.083422         0.014209          NaN             NaN      NaN        47.3522    236.49    1.0         1.0      327680           0          5         0  50.849374  4.403236 2019-09-12 15:08:34  598781.013281  5.634013e+06     31     U  41994.164703
+9721  13429       2070  400115.0     1      0      0   6.0       0.887488        0.076848   123.5344  -7.0333 -10.3611  -0.1477       0.083435         0.014149          NaN             NaN      NaN        47.3522    235.83    1.0         1.0      327680           0          5         0  50.849309  4.403091 2019-09-12 15:08:35  598770.907856  5.634006e+06     31     U  41996.574168
+9722  13430       2070  400116.0     1      0      0   6.0       0.887487        0.076846   123.0861  -7.3519 -10.1106  -0.1386       0.083449         0.014151          NaN             NaN      NaN        47.3522    233.98    1.0         1.0      327680           0          5         0  50.849242  4.402947 2019-09-12 15:08:36  598760.928144  5.633998e+06     31     U  41999.179417
+9723  13431       2070  400117.0     1      0      0   4.0       0.887485        0.076844   123.2050  -8.4962  -8.6112   0.7346       0.083464         0.017623          NaN             NaN      NaN        47.3522    225.39    1.0         1.0      327680           0          4         0  50.849172  4.402815 2019-09-12 15:08:37  598751.752437  5.633990e+06     31     U  42002.439765
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: start plotting UTM coordinates
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: head of dataframe [32mdfCrd[0m (#9724)
+                 time          UTM.E         UTM.N  Height[m]  NrSV  SignalInfo          dist  2D/3D
+0 2019-09-12 11:55:16  592480.934486  5.649795e+06   217.1598   4.0      327680  25060.369748      0
+1 2019-09-12 11:55:17  592480.744562  5.649795e+06   216.6032   4.0      327680  25060.277395      0
+2 2019-09-12 11:55:18  592480.893999  5.649795e+06   216.5355   4.0      327680  25060.382357      0
+3 2019-09-12 11:55:19  592480.930604  5.649795e+06   216.5912   4.0      327680  25060.383209      0
+4 2019-09-12 11:55:20  592481.003757  5.649795e+06   216.7827   4.0      327680  25060.396336      0
+5 2019-09-12 11:55:21  592481.138894  5.649795e+06   217.0970   4.0      327680  25060.442892      0
+6 2019-09-12 11:55:22  592481.342567  5.649795e+06   217.5538   4.0      327680  25060.527457      0
+7 2019-09-12 11:55:23  592481.531917  5.649795e+06   217.9764   4.0      327680  25060.602870      0
+8 2019-09-12 11:55:24  592481.744741  5.649795e+06   218.4574   4.0      327680  25060.691957      0
+9 2019-09-12 11:55:25  592481.956036  5.649795e+06   218.9243   4.0      327680  25060.779930      0
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: tail of dataframe [32mdfCrd[0m (#9724)
+                    time          UTM.E         UTM.N  Height[m]  NrSV  SignalInfo          dist  2D/3D
+9714 2019-09-12 15:08:28  598838.166075  5.634056e+06   124.6624   6.0      327680  41980.105196      0
+9715 2019-09-12 15:08:29  598829.011212  5.634048e+06   125.1287   6.0      327680  41983.185709      0
+9716 2019-09-12 15:08:30  598819.254726  5.634041e+06   125.2959   6.0      327680  41985.203755      0
+9717 2019-09-12 15:08:31  598809.395120  5.634035e+06   125.3760   6.0      327680  41986.900048      0
+9718 2019-09-12 15:08:32  598800.448008  5.634028e+06   125.0496   6.0      327680  41989.264682      0
+9719 2019-09-12 15:08:33  598790.936588  5.634020e+06   124.5134   6.0      327680  41991.771541      0
+9720 2019-09-12 15:08:34  598781.013281  5.634013e+06   123.9993   6.0      327680  41994.164703      0
+9721 2019-09-12 15:08:35  598770.907856  5.634006e+06   123.5344   6.0      327680  41996.574168      0
+9722 2019-09-12 15:08:36  598760.928144  5.633998e+06   123.0861   6.0      327680  41999.179417      0
+9723 2019-09-12 15:08:37  598751.752437  5.633990e+06   123.2050   4.0      327680  42002.439765      0
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: st = 327680  name = GAL_L1A+GAL_E6A
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: list of indices dIdx[GAL_L1A+GAL_E6A][3D] = Int64Index([   0,    1,    2,    3,    4,    5,    6,    7,    8,    9,
+            ...
+            9714, 9715, 9716, 9717, 9718, 9719, 9720, 9721, 9722, 9723],
+           dtype='int64', length=7063)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: list of indices dIdx[GAL_L1A+GAL_E6A][2D] = Int64Index([ 518,  519,  520,  521,  522,  523,  524,  525,  526,  527,
+            ...
+            9595, 9596, 9597, 9598, 9599, 9600, 9601, 9602, 9603, 9710],
+           dtype='int64', length=245)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: st = 65536  name = GAL_L1A
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: list of indices dIdx[GAL_L1A][3D] = Int64Index([3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107,
+            ...
+            6464, 6465, 6466, 6467, 6468, 6469, 6470, 6471, 6472, 6473],
+           dtype='int64', length=1899)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: list of indices dIdx[GAL_L1A][2D] = Int64Index([1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 3070, 3071,
+            ...
+            6441, 6442, 6734, 6735, 6736, 6737, 8956, 8957, 8958, 8959],
+           dtype='int64', length=517)
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting UTM.E
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (2D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (2D)
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting UTM.N
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (2D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (2D)
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting Height[m]
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (2D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (2D)
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting dist
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A (2D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (2D)
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting NrSV
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plot saved as /home/amuls/Nextcloud/E6BEL/19255/stf/png/Galileo-PRS-UTM.png
+INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: start plotting trajectories
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: st = 327680  name = GAL_L1A+GAL_E6A
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: list of indices dIdx[GAL_L1A+GAL_E6A][3D] = Int64Index([   0,    1,    2,    3,    4,    5,    6,    7,    8,    9,
+            ...
+            9714, 9715, 9716, 9717, 9718, 9719, 9720, 9721, 9722, 9723],
+           dtype='int64', length=7063)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: list of indices dIdx[GAL_L1A+GAL_E6A][2D] = Int64Index([ 518,  519,  520,  521,  522,  523,  524,  525,  526,  527,
+            ...
+            9595, 9596, 9597, 9598, 9599, 9600, 9601, 9602, 9603, 9710],
+           dtype='int64', length=245)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: st = 65536  name = GAL_L1A
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: list of indices dIdx[GAL_L1A][3D] = Int64Index([3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107,
+            ...
+            6464, 6465, 6466, 6467, 6468, 6469, 6470, 6471, 6472, 6473],
+           dtype='int64', length=1899)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: list of indices dIdx[GAL_L1A][2D] = Int64Index([1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 3070, 3071,
+            ...
+            6441, 6442, 6734, 6735, 6736, 6737, 8956, 8957, 8958, 8959],
+           dtype='int64', length=517)
+INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: head of dataframe [32mdfCrd plot scatter[0m (#9724)
+                 time          UTM.E         UTM.N  SignalInfo  2D/3D  sec
+0 2019-09-12 11:55:16  592480.934486  5.649795e+06      327680      0  0.0
+1 2019-09-12 11:55:17  592480.744562  5.649795e+06      327680      0  1.0
+2 2019-09-12 11:55:18  592480.893999  5.649795e+06      327680      0  2.0
+3 2019-09-12 11:55:19  592480.930604  5.649795e+06      327680      0  3.0
+4 2019-09-12 11:55:20  592481.003757  5.649795e+06      327680      0  4.0
+5 2019-09-12 11:55:21  592481.138894  5.649795e+06      327680      0  5.0
+6 2019-09-12 11:55:22  592481.342567  5.649795e+06      327680      0  6.0
+7 2019-09-12 11:55:23  592481.531917  5.649795e+06      327680      0  7.0
+8 2019-09-12 11:55:24  592481.744741  5.649795e+06      327680      0  8.0
+9 2019-09-12 11:55:25  592481.956036  5.649795e+06      327680      0  9.0
+INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: tail of dataframe [32mdfCrd plot scatter[0m (#9724)
+                    time          UTM.E         UTM.N  SignalInfo  2D/3D      sec
+9714 2019-09-12 15:08:28  598838.166075  5.634056e+06      327680      0  11592.0
+9715 2019-09-12 15:08:29  598829.011212  5.634048e+06      327680      0  11593.0
+9716 2019-09-12 15:08:30  598819.254726  5.634041e+06      327680      0  11594.0
+9717 2019-09-12 15:08:31  598809.395120  5.634035e+06      327680      0  11595.0
+9718 2019-09-12 15:08:32  598800.448008  5.634028e+06      327680      0  11596.0
+9719 2019-09-12 15:08:33  598790.936588  5.634020e+06      327680      0  11597.0
+9720 2019-09-12 15:08:34  598781.013281  5.634013e+06      327680      0  11598.0
+9721 2019-09-12 15:08:35  598770.907856  5.634006e+06      327680      0  11599.0
+9722 2019-09-12 15:08:36  598760.928144  5.633998e+06      327680      0  11600.0
+9723 2019-09-12 15:08:37  598751.752437  5.633990e+06      327680      0  11601.0
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: indices multiple of 300s = Int64Index([   0,  573, 1153, 1752, 2269, 2868, 3458, 3944, 5436, 5827, 6390,
+            7584, 8184, 8755, 9154, 9561],
+           dtype='int64')
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plotting GAL_L1A+GAL_E6A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plotting GAL_L1A+GAL_E6A (2D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plotting GAL_L1A (3D)
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plotting GAL_L1A (2D)
+INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: annotate text
+['11:55:16', '12:05:16', '12:15:16', '12:25:16', '12:35:16', '12:45:16', '12:55:16', '13:05:16', '13:35:16', '13:45:16', '13:55:16', '14:25:16', '14:35:16', '14:45:16', '14:55:16', '15:05:16']
+DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: jamer location = 580727.4840383757 5671928.504522991
+INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plot saved as /home/amuls/Nextcloud/E6BEL/19255/stf/png/Galileo-PRS-UTMscatter.png
+INFO: [33mstfgeodetic.py[0m - [32mmain[0m: information:
+{'dir': '/home/amuls/Nextcloud/E6BEL/19255/stf', 'gnss': 'Galileo PRS', 'stf': 'STNK2550.19__PVTGeodetic_2.stf', 'jammer': {'geod': {'lat': 51.19306, 'lon': 4.15528}, 'UTM': {'E': 580727.4840383757, 'N': 5671928.504522991, 'Z': 31, 'L': 'U'}}, 'Time': {'epochs': 9724, 'date': '12 Sep 2019', 'start': '11:55:16', 'end': '15:08:37'}, '#epochs': 9724, 'signals': {327680: 'GAL_L1A+GAL_E6A', 65536: 'GAL_L1A'}, 'csv': 'STNK2550.19__PVTGeodetic_2.csv'}
