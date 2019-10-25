@@ -1,5 +1,5 @@
-INFO: [33mstfgeodetic.py[0m - [32mcheckExistenceArgs[0m: working diretory is /home/amuls/Nextcloud/E6BEL/19255/stf
-INFO: [33mstfgeodetic.py[0m - [32mcheckExistenceArgs[0m: changed to directory /home/amuls/Nextcloud/E6BEL/19255/stf
+INFO: [33mstfgeodetic.py[0m - [32mcheckExistenceArgs[0m: working diretory is ${HOME}/Nextcloud/E6BEL/19255/stf
+INFO: [33mstfgeodetic.py[0m - [32mcheckExistenceArgs[0m: changed to directory ${HOME}/Nextcloud/E6BEL/19255/stf
 INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: reading file STNK2550.19__PVTGeodetic_2.stf
 INFO: [33mstfgeodetic.py[0m - [32mreadSTFGeodetic[0m: head of dataframe [32mSTNK2550.19__PVTGeodetic_2.stf[0m (#13432)
    WNc[week]    TOW[s]  Mode  2D/3D  Error  NrSV  Latitude[rad]  Longitude[rad]  Height[m]  Vn[m/s]  Ve[m/s]  Vu[m/s]  ClockBias[ms]  ClockDrift[ppm]  ReferenceID  MeanCorrAge[s]  NrBases  Undulation[m]  COG[deg]  Datum  TimeSystem  SignalInfo  WACorrInfo  AlertFlag  AutoBase
@@ -138,7 +138,7 @@ DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A+GAL_E6A
 DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (3D)
 DEBUG: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting GAL_L1A (2D)
 INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plotting NrSV
-INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plot saved as /home/amuls/Nextcloud/E6BEL/19255/stf/png/Galileo-PRS-UTM.png
+INFO: [33mplotcoords.py[0m - [32mplotUTMCoords[0m: plot saved as ${HOME}/Nextcloud/E6BEL/19255/stf/png/Galileo-PRS-UTM.png
 INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: start plotting trajectories
 DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: st = 327680  name = GAL_L1A+GAL_E6A
 DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: list of indices dIdx[GAL_L1A+GAL_E6A][3D] = Int64Index([   0,    1,    2,    3,    4,    5,    6,    7,    8,    9,
@@ -192,6 +192,6 @@ DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plotting GAL_L1A (2D)
 INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: annotate text
 ['11:55:16', '12:05:16', '12:15:16', '12:25:16', '12:35:16', '12:45:16', '12:55:16', '13:05:16', '13:35:16', '13:45:16', '13:55:16', '14:25:16', '14:35:16', '14:45:16', '14:55:16', '15:05:16']
 DEBUG: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: jamer location = 580727.4840383757 5671928.504522991
-INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plot saved as /home/amuls/Nextcloud/E6BEL/19255/stf/png/Galileo-PRS-UTMscatter.png
+INFO: [33mplotcoords.py[0m - [32mplotUTMScatter[0m: plot saved as ${HOME}/Nextcloud/E6BEL/19255/stf/png/Galileo-PRS-UTMscatter.png
 INFO: [33mstfgeodetic.py[0m - [32mmain[0m: information:
-{'dir': '/home/amuls/Nextcloud/E6BEL/19255/stf', 'gnss': 'Galileo PRS', 'stf': 'STNK2550.19__PVTGeodetic_2.stf', 'jammer': {'geod': {'lat': 51.19306, 'lon': 4.15528}, 'UTM': {'E': 580727.4840383757, 'N': 5671928.504522991, 'Z': 31, 'L': 'U'}}, 'Time': {'epochs': 9724, 'date': '12 Sep 2019', 'start': '11:55:16', 'end': '15:08:37'}, '#epochs': 9724, 'signals': {327680: 'GAL_L1A+GAL_E6A', 65536: 'GAL_L1A'}, 'csv': 'STNK2550.19__PVTGeodetic_2.csv'}
+{'dir': '${HOME}/Nextcloud/E6BEL/19255/stf', 'gnss': 'Galileo PRS', 'stf': 'STNK2550.19__PVTGeodetic_2.stf', 'jammer': {'geod': {'lat': 51.19306, 'lon': 4.15528}, 'UTM': {'E': 580727.4840383757, 'N': 5671928.504522991, 'Z': 31, 'L': 'U'}}, 'Time': {'epochs': 9724, 'date': '12 Sep 2019', 'start': '11:55:16', 'end': '15:08:37'}, '#epochs': 9724, 'signals': {327680: 'GAL_L1A+GAL_E6A', 65536: 'GAL_L1A'}, 'csv': 'STNK2550.19__PVTGeodetic_2.csv'}
