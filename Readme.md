@@ -90,6 +90,15 @@ This `stfproc` repository currently processes for following `STF` blocks:
 - __`stfrxstatus.py`__
     + processing of ReceiverStatus (v2) = Overall status information of the receiver
 
-# Script `stfgeodetic.py` 
+## Script `stfgeodetic.py` 
 
-# Script `stfrxstatus.py`
+The script `stfgeodetic.py` reads the PVTGeodetic v2 `STF` file into a `python` `DataFrame` and 
+
+- calculates from the geodetic coordinates the `UTM` projection coordinates
+- adds a `DateTime` structure.
+
+The script plots the `UTM` coordinates (versus time an scatter plot), determines what navigation services have been used and whether 2D/3D positioning is used. This is reflected in the plots created.
+
+## Script `stfrxstatus.py`
+
+
