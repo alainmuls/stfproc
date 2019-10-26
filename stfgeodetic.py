@@ -110,19 +110,43 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     # add info to dSTF about used signal types used
     dST = {}
     sigTypes = dfSTF.SignalInfo.unique()
-    print(sigTypes)
+    logger.info('{func:s}: found nav-signals {sigt!s}'.format(sigt=sigTypes, func=cFuncName))
     for i, sigType in enumerate(sigTypes):
-        nrBitsSet = ssnst.countSetBits(sigType)
-        lst1Bits = ssnst.findAllSetBits(sigType, nrBitsSet)
+        logger.debug('{func:s}: searching name for sig-type {st!s}'.format(st=sigType, func=cFuncName))
 
-        # get the name of the signals
-        stName = ssnst.dSigType[lst1Bits[0]]
-        if nrBitsSet > 1:
-            for j in lst1Bits[1:]:
-                stName += '+' + ssnst.dSigType[j]
-        dST[sigType] = stName
+        sigTypeNames = []
+
+        for k, v in ssnst.dSigType.items():
+            # logger.debug('{func:s}: checking presence of signal {sig!s}'.format(sig=v, func=cFuncName))
+            # logger.debug('{func:s}: bin(sigType) = {st!s}'.format(st=bin(sigType), func=cFuncName))
+            # logger.debug('{func:s}: bin(0b1 << k) = {ssnst!s}'.format(ssnst=bin(0b1 << k), func=cFuncName))
+            # logger.debug('{func:s}: bin(bin(sigType) & bin(0b1 << k)) = {binops!s})'.format(binops=bin(sigType & (0b1 << k)), func=cFuncName))
+            # logger.debug('{func:s}: binary check sigtype = {st!s} - ssn = {ssnst!s} operator and = {opsbin!s}'.format(st=bin(sigType), ssnst=bin(0b1 << k), opsbin=bin(sigType & (0b1 << k)), func=cFuncName))
+            # logger.debug('-' * 10)
+
+            if (sigType & (0b1 << k)) != 0:
+                logger.info('{func:s}: found signal {ssnst:s}'.format(ssnst=v, func=cFuncName))
+                # add name to the used signal types
+                sigTypeNames.append(v)
+
+        # add signal to the dST dict
+        dST[sigType] = sigTypeNames
+
+        # nrBitsSet = ssnst.countSetBits(sigType)
+        # lst1Bits = ssnst.findAllSetBits(sigType, nrBitsSet)
+
+        # # get the name of the signals
+        # stName = ssnst.dSigType[lst1Bits[0]]
+        # if nrBitsSet > 1:
+        #     for j in lst1Bits[1:]:
+        #         stName += '+' + ssnst.dSigType[j]
+        # dST[sigType] = stName
 
     dSTF['signals'] = dST
+
+    logger.info('{func:s}: found signals {signals!s}'.format(signals=dSTF['signals'], func=cFuncName))
+
+    sys.exit(5)
 
     logger.info('{func:s}: read STF file {file:s}, added UTM coordiantes and GNSS time'.format(file=stfFile, func=cFuncName))
 
@@ -164,11 +188,12 @@ def main(argv):
     dfGeod = readSTFGeodetic(stfFile=fileSTF, logger=logger)
     amutils.logHeadTailDataFrame(df=dfGeod, dfName=dSTF['stf'], callerName=cFuncName, logger=logger)
 
-    for nr in 65536, 262144, 327680:
-        print('nr = {:d}'.format(nr))
-        nrBitsSet = ssnst.countSetBits(nr)
-        lst1Bits = ssnst.findAllSetBits(nr, nrBitsSet)
-        print('lst1Bits = {!s}'.format(lst1Bits))
+    # for nr in 65536, 262144, 327680:
+    #     for k, v in
+    #     print('nr = {:d}'.format(nr))
+    #     nrBitsSet = ssnst.countSetBits(nr)
+    #     lst1Bits = ssnst.findAllSetBits(nr, nrBitsSet)
+    #     print('lst1Bits = {!s}'.format(lst1Bits))
 
     # save to cvs file
     dSTF['csv'] = os.path.splitext(dSTF['stf'])[0] + '.csv'
