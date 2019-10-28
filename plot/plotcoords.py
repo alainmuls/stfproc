@@ -41,13 +41,14 @@ def plotUTMCoords(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
 
     # get the index for signals used for PNT AND for 3D/2D
     dIdx = {}  # dict with indices corresponding to signals & 3D/2D usage
-    for st, stName in dStf['signals'].items():
-        logger.debug('{func:s}: st = {st!s}  name = {name:s}'.format(st=st, name=stName, func=cFuncName))
-        dIdx[stName] = {}
-        dIdx[stName]['3D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 0)]
-        dIdx[stName]['2D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 1)]
-        logger.debug('{func:s}: list of indices dIdx[{name:s}][3D] = {idx!s}'.format(name=stName, idx=dIdx[stName]['3D'], func=cFuncName))
-        logger.debug('{func:s}: list of indices dIdx[{name:s}][2D] = {idx!s}'.format(name=stName, idx=dIdx[stName]['2D'], func=cFuncName))
+    for st, lstSTNames in dStf['signals'].items():
+        stNames = ",".join(lstSTNames)
+        logger.info('{func:s}: st = {st:d}  name = {name!s}'.format(st=st, name=stNames, func=cFuncName))
+        dIdx[st] = {}
+        dIdx[st]['3D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 0)]
+        dIdx[st]['2D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 1)]
+        logger.info('{func:s}: list of indices dIdx[{st:d}][3D] = {idx!s}'.format(st=st, idx=dIdx[st]['3D'], func=cFuncName))
+        logger.info('{func:s}: list of indices dIdx[{st:d}][2D] = {idx!s}'.format(st=st, idx=dIdx[st]['2D'], func=cFuncName))
 
     # for setting the time on time-scale
     dtFormat = plot_utils.determine_datetime_ticks(startDT=dfCrd['time'].iloc[0], endDT=dfCrd['time'].iloc[-1])
@@ -78,13 +79,14 @@ def plotUTMCoords(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
 
         if crd is not 'NrSV':
             # plot according to signals used and 2D/3D
-            for st, stName in dStf['signals'].items():
+            for st, lstSTNames in dStf['signals'].items():
+                stNames = ",".join(lstSTNames)
                 for mode in '3D', '2D':
-                    lblTxt = '{st:s} ({mode:s})'.format(st=stName, mode=mode)
+                    lblTxt = '{st:s} ({mode:s})'.format(st=stNames, mode=mode)
                     logger.debug('{func:s}: plotting {stm:s}'.format(stm=lblTxt, func=cFuncName))
 
                     # get the index for this sigType & mode
-                    idx = dIdx[stName][mode]
+                    idx = dIdx[st][mode]
                     ax.plot(dfCrd['time'].iloc[idx], dfCrd[crd].iloc[idx], color=next(colorsIter), linestyle='', marker='.', label=lblTxt, markersize=2)
         else:
             # plot when 3D posn
@@ -133,13 +135,14 @@ def plotUTMScatter(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
 
     # get the index for signals used for PNT AND for 3D/2D
     dIdx = {}  # dict with indices corresponding to signals & 3D/2D usage
-    for st, stName in dStf['signals'].items():
-        logger.debug('{func:s}: st = {st!s}  name = {name:s}'.format(st=st, name=stName, func=cFuncName))
-        dIdx[stName] = {}
-        dIdx[stName]['3D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 0)]
-        dIdx[stName]['2D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 1)]
-        logger.debug('{func:s}: list of indices dIdx[{name:s}][3D] = {idx!s}'.format(name=stName, idx=dIdx[stName]['3D'], func=cFuncName))
-        logger.debug('{func:s}: list of indices dIdx[{name:s}][2D] = {idx!s}'.format(name=stName, idx=dIdx[stName]['2D'], func=cFuncName))
+    for st, lstSTNames in dStf['signals'].items():
+        stNames = ",".join(lstSTNames)
+        logger.info('{func:s}: st = {st:d}  name = {name:s}'.format(st=st, name=stNames, func=cFuncName))
+        dIdx[st] = {}
+        dIdx[st]['3D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 0)]
+        dIdx[st]['2D'] = dfCrd.index[(dfCrd['SignalInfo'] == st) & (dfCrd['2D/3D'] == 1)]
+        logger.info('{func:s}: list of indices dIdx[{st:d}][3D] = {idx!s}'.format(st=st, idx=dIdx[st]['3D'], func=cFuncName))
+        logger.info('{func:s}: list of indices dIdx[{st:d}][2D] = {idx!s}'.format(st=st, idx=dIdx[st]['2D'], func=cFuncName))
 
     # convert time column to seconds
     dsTime = dfCrd['time']-dfCrd['time'].iloc[0]
@@ -165,13 +168,14 @@ def plotUTMScatter(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     colorsIter = iter(list(mcolors.TABLEAU_COLORS))
 
     # plot the E-N coordinates according to signals used and 2D/3D mode
-    for st, stName in dStf['signals'].items():
+    for st, lstSTNames in dStf['signals'].items():
+        stNames = ",".join(lstSTNames)
         for mode in '3D', '2D':
-            lblTxt = '{st:s} ({mode:s})'.format(st=stName, mode=mode)
+            lblTxt = '{st:s} ({mode:s})'.format(st=stNames, mode=mode)
             logger.debug('{func:s}: plotting {stm:s}'.format(stm=lblTxt, func=cFuncName))
 
             # get the index for this sigType & mode
-            idx = dIdx[stName][mode]
+            idx = dIdx[st][mode]
             ax.plot(dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx], color=next(colorsIter), linestyle='', marker='.', label=lblTxt, markersize=2)
 
 
@@ -184,11 +188,12 @@ def plotUTMScatter(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     for idx, text in zip(idxTime, annText):
         ax.annotate(text, (dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx]), textcoords='offset points', xytext=(0,10), ha='center')
 
-    # annotate with position of jammer
-    logger.debug('{func:s}: jamer location = {E!s} {N!s}'.format(E=dStf['jammer']['UTM']['E'], N=dStf['jammer']['UTM']['N'], func=cFuncName))
-    E, N = dStf['jammer']['UTM']['E'], dStf['jammer']['UTM']['N']
-    ax.annotate('jammer',xy=(E,N), xytext=(E-200,N), xycoords='data', horizontalalignment='right', verticalalignment='center', color='magenta')
+    # annotate with position of marker
+    logger.info('{func:s}: marker location = {E!s} {N!s}'.format(E=dStf['marker']['UTM.E'], N=dStf['marker']['UTM.N'], func=cFuncName))
+    E, N = dStf['marker']['UTM.E'], dStf['marker']['UTM.N']
+    ax.annotate('marker', xy=(E,N), xytext=(E-200,N), xycoords='data', horizontalalignment='right', verticalalignment='center', color='magenta')
     ax.scatter(E, N, color='magenta', marker='^')
+
     # draw circles for distancd evaluation on plot
     for radius in range(5, 50, 5):
         newCircle = plt.Circle((E,N), radius*1000, color='red', fill=False, clip_on=True, alpha=0.4)

@@ -34,12 +34,13 @@ def treatCmdOpts(argv):
     parser.add_argument('-d', '--dir', help='Directory of SBF file (defaults to .)', required=False, default='.', type=str)
     parser.add_argument('-f', '--files', help='Filename of PVTGeodetic_v2 file', required=True, type=str)
     parser.add_argument('-g', '--gnss', help='GNSS System Name', required=True, type=str)
+    parser.add_argument('-m', '--marker', help='Geodetic coordinates (lat,lon,ellH) of reference point in degrees: ["50.8440152778" "4.3929283333" "151.39179"] for RMA, ["50.93277777", "4.46258333", "123"] for Peutie, default ["0", "0", "0"] means use mean position', nargs=3, type=str, required=False, default=["0", "0", "0"])
 
     parser.add_argument('-l', '--logging', help='specify logging level console/file (default {:s})'.format(colored('INFO DEBUG', 'green')), nargs=2, required=False, default=['INFO', 'DEBUG'], choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG', 'NOTSET'])
 
     args = parser.parse_args()
 
-    return args.dir, args.files, args.gnss, args.logging
+    return args.dir, args.files, args.gnss, args.marker, args.logging
 
 
 def checkExistenceArgs(stfDir: str, stfFile: str, logger: logging.Logger) -> str:
@@ -93,8 +94,8 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     dfSTF['UTM.E'], dfSTF['UTM.N'], dfSTF['UTM.Z'], dfSTF['UTM.L'] = utm.from_latlon(dfSTF['lat'].to_numpy(), dfSTF['lon'].to_numpy())
 
     # calculate distance to st-Niklass 51.1577189  4.1915975
-    dfSTF['dist'] = np.linalg.norm(dfSTF[['UTM.E', 'UTM.N']].sub(np.array([dSTF['jammer']['UTM']['E'], dSTF['jammer']['UTM']['N']])), axis=1)
-    # dfSTF['dist2'] = np.linalg.norm([dfSTF['UTM.E'].iloc[0], dfSTF['UTM.N'].iloc[0]] - [dSTF['jammer']['UTM']['E'], dSTF['jammer']['UTM']['N']])
+    dfSTF['dist'] = np.linalg.norm(dfSTF[['UTM.E', 'UTM.N']].sub(np.array([dSTF['marker']['UTM.E'], dSTF['marker']['UTM.N']])), axis=1)
+    # dfSTF['dist2'] = np.linalg.norm([dfSTF['UTM.E'].iloc[0], dfSTF['UTM.N'].iloc[0]] - [dSTF['marker']['UTM.E'], dSTF['marker']['UTM.N']])
 
     # add info to dSTF about time
     dTime = {}
@@ -110,19 +111,41 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     # add info to dSTF about used signal types used
     dST = {}
     sigTypes = dfSTF.SignalInfo.unique()
-    print(sigTypes)
+    logger.info('{func:s}: found nav-signals {sigt!s}'.format(sigt=sigTypes, func=cFuncName))
     for i, sigType in enumerate(sigTypes):
-        nrBitsSet = ssnst.countSetBits(sigType)
-        lst1Bits = ssnst.findAllSetBits(sigType, nrBitsSet)
+        logger.debug('{func:s}: searching name for sig-type {st!s}'.format(st=sigType, func=cFuncName))
 
-        # get the name of the signals
-        stName = ssnst.dSigType[lst1Bits[0]]
-        if nrBitsSet > 1:
-            for j in lst1Bits[1:]:
-                stName += '+' + ssnst.dSigType[j]
-        dST[sigType] = stName
+        sigTypeNames = []
+
+        for k, v in ssnst.dSigType.items():
+            # logger.debug('{func:s}: checking presence of signal {sig!s}'.format(sig=v, func=cFuncName))
+            # logger.debug('{func:s}: bin(sigType) = {st!s}'.format(st=bin(sigType), func=cFuncName))
+            # logger.debug('{func:s}: bin(0b1 << k) = {ssnst!s}'.format(ssnst=bin(0b1 << k), func=cFuncName))
+            # logger.debug('{func:s}: bin(bin(sigType) & bin(0b1 << k)) = {binops!s})'.format(binops=bin(sigType & (0b1 << k)), func=cFuncName))
+            # logger.debug('{func:s}: binary check sigtype = {st!s} - ssn = {ssnst!s} operator and = {opsbin!s}'.format(st=bin(sigType), ssnst=bin(0b1 << k), opsbin=bin(sigType & (0b1 << k)), func=cFuncName))
+            # logger.debug('-' * 10)
+
+            if (sigType & (0b1 << k)) != 0:
+                logger.info('{func:s}: found signal {ssnst:s}'.format(ssnst=v, func=cFuncName))
+                # add name to the used signal types
+                sigTypeNames.append(v[4:])
+
+        # add signal to the dST dict
+        dST[sigType] = sigTypeNames
+
+        # nrBitsSet = ssnst.countSetBits(sigType)
+        # lst1Bits = ssnst.findAllSetBits(sigType, nrBitsSet)
+
+        # # get the name of the signals
+        # stName = ssnst.dSigType[lst1Bits[0]]
+        # if nrBitsSet > 1:
+        #     for j in lst1Bits[1:]:
+        #         stName += '+' + ssnst.dSigType[j]
+        # dST[sigType] = stName
 
     dSTF['signals'] = dST
+
+    logger.info('{func:s}: found signals {signals!s}'.format(signals=dSTF['signals'], func=cFuncName))
 
     logger.info('{func:s}: read STF file {file:s}, added UTM coordiantes and GNSS time'.format(file=stfFile, func=cFuncName))
 
@@ -137,7 +160,7 @@ def main(argv):
     cFuncName = colored(os.path.basename(__file__), 'yellow') + ' - ' + colored(sys._getframe().f_code.co_name, 'green')
 
     # treat command line options
-    dirSTF, fileSTF, GNSSsyst, logLevels = treatCmdOpts(argv)
+    dirSTF, fileSTF, GNSSsyst, crdMarker, logLevels = treatCmdOpts(argv)
 
     # create logging for better debugging
     logger = amc.createLoggers(os.path.basename(__file__), dir=dirSTF, logLevels=logLevels)
@@ -151,24 +174,32 @@ def main(argv):
     dSTF['dir'] = workDir
     dSTF['gnss'] = GNSSsyst
     dSTF['stf'] = fileSTF
-    # add jammer location coordinates
-    dJammer = {}
-    dJammer['geod'] = {}
-    dJammer['geod']['lat'] = 51.19306  # 51.193183
-    dJammer['geod']['lon'] = 4.15528  # 4.155056
-    dJammer['UTM'] = {}
-    dJammer['UTM']['E'], dJammer['UTM']['N'], dJammer['UTM']['Z'], dJammer['UTM']['L'] = utm.from_latlon(dJammer['geod']['lat'], dJammer['geod']['lon'])
-    dSTF['jammer'] = dJammer
+
+    # set the reference point
+    dMarker = {}
+    dMarker['lat'], dMarker['lon'], dMarker['ellH'] = map(float, crdMarker)
+    if [dMarker['lat'], dMarker['lon'], dMarker['ellH']] == [0, 0, 0]:
+        dMarker['lat'] = dMarker['lon'] = dMarker['ellH'] = np.NaN
+        dMarker['UTM.E'] = dMarker['UTM.N'] = np.NaN
+        dMarker['UTM.Z'] = dMarker['UTM.L'] = ''
+    else:
+        dMarker['UTM.E'], dMarker['UTM.N'], dMarker['UTM.Z'], dMarker['UTM.L'] = UTM.from_latlon(dMarker['lat'], dMarker['lon'])
+
+    logger.info('{func:s}: marker coordinates = {crd!s}'.format(func=cFuncName, crd=dMarker))
+    amc.dRTK['marker'] = dMarker
+
+    # # add jammer location coordinates
+    # dMarker = {}
+    # dMarker['geod'] = {}
+    # dMarker['geod']['lat'] = 51.19306  # 51.193183
+    # dMarker['geod']['lon'] = 4.15528  # 4.155056
+    # dMarker['UTM'] = {}
+    # dMarker['UTM.E'], dMarker['UTM.N'], dMarker['UTM.Z'], dMarker['UTM.L'] = utm.from_latlon(dMarker['geod']['lat'], dMarker['geod']['lon'])
+    dSTF['marker'] = dMarker
 
     # read in the STF file using included header information
     dfGeod = readSTFGeodetic(stfFile=fileSTF, logger=logger)
     amutils.logHeadTailDataFrame(df=dfGeod, dfName=dSTF['stf'], callerName=cFuncName, logger=logger)
-
-    for nr in 65536, 262144, 327680:
-        print('nr = {:d}'.format(nr))
-        nrBitsSet = ssnst.countSetBits(nr)
-        lst1Bits = ssnst.findAllSetBits(nr, nrBitsSet)
-        print('lst1Bits = {!s}'.format(lst1Bits))
 
     # save to cvs file
     dSTF['csv'] = os.path.splitext(dSTF['stf'])[0] + '.csv'

@@ -109,6 +109,7 @@ def readSTFRxStatus(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     dFrontEnd = {}
     # get unique values for FrontEnd
     lstFrontEnds = np.sort(dfSTF['FrontEnd'].unique().tolist())
+    logger.info('{func:s}: found front-ends {frend!s}'.format(frend=lstFrontEnds, func=cFuncName))
     # find the corresponding names
     for i, frontEnd in enumerate(lstFrontEnds):
         dFrontEnd[frontEnd] = {}
