@@ -1,12 +1,13 @@
 # STFProc - Processing of STF based information
 
-## Introduction
+## Introduction xxx
 
-The SBF format for GNSS receivers from Septentrio contain different `SBF` (Septentrio Binary Format) blocks. Each `SBF` block contains related GNSS information and can be converted to a readable `STF` (Septentrio Text Format) file using the `sbf2stf` program.
+The SBF format for GNSS receivers from Septentr
+io contain different `SBF` (Septentrio Binary Format) blocks. Each `SBF` block contains related GNSS information and can be converted to a readable `STF` (Septentrio Text Format) file using the `sbf2stf` program.
 
 The `STF` blocks in a `SBF` file can be obtained by running:
 ```bash
-$ sbf2stf -f <sbf-filename>
+$ sbf2stf -f <sbf-file-name>
 ```
 and results in a file similar to:
 
@@ -97,8 +98,57 @@ The script `stfgeodetic.py` reads the PVTGeodetic v2 `STF` file into a `python` 
 - calculates from the geodetic coordinates the `UTM` projection coordinates
 - adds a `DateTime` structure.
 
-The script plots the `UTM` coordinates (versus time an scatter plot), determines what navigation services have been used and whether 2D/3D positioning is used. This is reflected in the plots created.
+The script plots the `UTM` coordinates (versus time and scatter plot), determines what navigation services have been used and whether 2D/3D positioning is used. This is reflected in the plots created.
 
+### Getting help
+
+```bash
+$ stfgeodetic.py -h
+usage: stfgeodetic.py [-h] [-d DIR] -f FILES -g GNSS [-m MARKER MARKER MARKER]
+                      [-l {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET} {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}]
+
+stfgeodetic.py reads in a sbf2stf converted SBF Geodetic-v2 file and make UTM
+plots
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DIR, --dir DIR     Directory of SBF file (defaults to .)
+  -f FILES, --files FILES
+                        Filename of PVTGeodetic_v2 file
+  -g GNSS, --gnss GNSS  GNSS System Name
+  -m MARKER MARKER MARKER, --marker MARKER MARKER MARKER
+                        Geodetic coordinates (lat,lon,ellH) of reference point
+                        in degrees: ["50.8440152778" "4.3929283333"
+                        "151.39179"] for RMA, ["50.93277777", "4.46258333",
+                        "123"] for Peutie, default ["0", "0", "0"] means use
+                        mean position
+  -l {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET} {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}, --logging {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET} {CRITICAL,ERROR,WARNING,INFO,DEBUG,NOTSET}
+                        specify logging level console/file (default INFO
+                        DEBUG)
+```
+
+### Example runs
+
+```bsh
+$ stfgeodetic.py -g 'GNSS OS' -d ${HOME}/RxTURP/BEGPIOS/ASTX/19100/stf 
+    -f SEPT1000.19__PVTGeodetic_2.stf -l INFO DEBUG
+$ stfgeodetic.py -g 'Galileo PRS' -d ${HOME}/Nextcloud/E6BEL/19255/stf 
+    -f STNK2550.19__PVTGeodetic_2.stf -l INFO DEBUG
+```
+
+### Example of output
+
+A python `DetaFrame` is saved as a  `CSV` file, containing the  geodetic and UTM position information.
+
+Following plots are created:
+
+![UTM coordinates vs time](./png/GNSS-OS-UTM.png "")
+
+![UTM scatter plot](./png/GNSS-OS-UTMscatter.png "")
+
+\newpage
 ## Script `stfrxstatus.py`
 
+The script `stfrxstatus.py` reads the ReceiverStatus v2 `STF` file into a `python` `DataFrame` and  plots the automatic gain control (AGC) of the different front-ends.
 
+![Plot of AGC on front-ends AsteRx SB](./png/GNSS-Open-Signals-AGC.png "")
