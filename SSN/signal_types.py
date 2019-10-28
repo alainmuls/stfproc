@@ -41,7 +41,9 @@ dFrontEnd = {
  4: 'GLONASS L2',
  5: 'GPS/SBAS/Galileo L5/E5a',
  6: 'Galileo E5b',
- 7: 'Galileo E5 (a+b)'
+ 7: 'Galileo E5 (a+b)',
+ 8: 'unknown am',
+ 9: 'unknown am'
 }
 
 
