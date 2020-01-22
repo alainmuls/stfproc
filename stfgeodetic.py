@@ -210,7 +210,7 @@ def main(argv):
     # plot trajectory
     plotcoords.plotUTMScatter(dStf=dSTF, dfCrd=dfGeod[['time', 'UTM.E', 'UTM.N', 'SignalInfo', '2D/3D']], logger=logger)
 
-    logger.info('{func:s}: information:\n{dict!s}'.format(dict=dSTF, func=cFuncName))
+    logger.info('{func:s}: information:\n{dict!s}'.format(dict=amutils.pretty(dSTF), func=cFuncName))
 
 
 if __name__ == "__main__":

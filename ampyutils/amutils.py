@@ -132,7 +132,7 @@ def printHeadTailDataFrame(df, name='DataFrame', head=10, tail=10, index=True):
         print('   ... Tail of %s (size %d)\n%s' % (colored(name, 'green'), df.shape[0], df.tail(n=tail).to_string(index=index)))
 
 
-def logHeadTailDataFrame(logger: logging.Logger, callerName: str, df: DataFrame, dfName: str ='DataFrame', head: int =10, tail: int =10, index: bool=True):
+def logHeadTailDataFrame(logger: logging.Logger, callerName: str, df: DataFrame, dfName: str = 'DataFrame', head: int = 10, tail: int = 10, index: bool = True):
     """
     logHeadTailDataFrame logs the head first/tail last rows of the dataframe df
 
@@ -147,7 +147,7 @@ def logHeadTailDataFrame(logger: logging.Logger, callerName: str, df: DataFrame,
     :param index: display th eindex of the dataframe or not
     :type: bool
     """
-    cFuncName = colored(os.path.basename(__file__), 'yellow') + ' - ' + colored(sys._getframe().f_code.co_name, 'green')
+    # cFuncName = colored(os.path.basename(__file__), 'yellow') + ' - ' + colored(sys._getframe().f_code.co_name, 'green')
 
     if df.shape[0] <= (head + tail):
         logger.info('{func:s}: dataframe {dfname:s} (#{shape:d})\n{df:s}'.format(func=callerName, dfname=colored(dfName, 'green'), shape=df.shape[0], df=df.to_string(index=index)))
@@ -315,3 +315,35 @@ def divround(value, step, barrage):
     """
     result, rest = divmod(value, step)
     return result*step if rest < barrage else (result+1)*step
+
+
+def make_rgb_transparent(rgb, bg_rgb, alpha):
+    """
+    make a color transparent
+    """
+    return [alpha * c1 + (1 - alpha) * c2
+            for (c1, c2) in zip(rgb, bg_rgb)]
+
+
+def pretty(value, htchar='\t', lfchar='\n', indent=0):
+    nlch = lfchar + htchar * (indent + 1)
+    if type(value) is dict:
+        items = [
+            nlch + repr(key) + ': ' + pretty(value[key], htchar, lfchar, indent + 1)
+            for key in value
+        ]
+        return '{%s}' % (','.join(items) + lfchar + htchar * indent)
+    elif type(value) is list:
+        items = [
+            nlch + pretty(item, htchar, lfchar, indent + 1)
+            for item in value
+        ]
+        return '[%s]' % (','.join(items) + lfchar + htchar * indent)
+    elif type(value) is tuple:
+        items = [
+            nlch + pretty(item, htchar, lfchar, indent + 1)
+            for item in value
+        ]
+        return '(%s)' % (','.join(items) + lfchar + htchar * indent)
+    else:
+        return repr(value)

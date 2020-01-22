@@ -59,7 +59,7 @@ def createLoggers(baseName: str, dir=dir, logLevels: str = ['INFO', 'DEBUG']) ->
     return pyLogger
 
 
-def logDataframeInfo(df: pd.DataFrame, dfName: str, callerName:str, logger: logging.Logger):
+def logDataframeInfo(df: pd.DataFrame, dfName: str, callerName: str, logger: logging.Logger):
     """
     lofDataframeInfo logs the info of a dataframe from log level DEBUG
     """
