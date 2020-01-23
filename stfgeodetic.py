@@ -8,7 +8,7 @@ from termcolor import colored
 import numpy as np
 import pandas as pd
 import logging
-import utm
+import utm as UTM
 
 import am_config as amc
 from ampyutils import amutils
@@ -91,7 +91,7 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     dfSTF['time'] = dfSTF.apply(lambda x: gpstime.UTCFromWT(x['WNc[week]'], x['TOW[s]']), axis=1)
 
     # add UTM coordinates
-    dfSTF['UTM.E'], dfSTF['UTM.N'], dfSTF['UTM.Z'], dfSTF['UTM.L'] = utm.from_latlon(dfSTF['lat'].to_numpy(), dfSTF['lon'].to_numpy())
+    dfSTF['UTM.E'], dfSTF['UTM.N'], dfSTF['UTM.Z'], dfSTF['UTM.L'] = UTM.from_latlon(dfSTF['lat'].to_numpy(), dfSTF['lon'].to_numpy())
 
     # calculate distance to st-Niklass 51.1577189  4.1915975
     dfSTF['dist'] = np.linalg.norm(dfSTF[['UTM.E', 'UTM.N']].sub(np.array([dSTF['marker']['UTM.E'], dSTF['marker']['UTM.N']])), axis=1)
@@ -144,9 +144,14 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
         # dST[sigType] = stName
 
     dSTF['signals'] = dST
-
     logger.info('{func:s}: found signals {signals!s}'.format(signals=dSTF['signals'], func=cFuncName))
 
+    # find out what PVT error codess we have
+    errCodes = list(set(dfSTF.Error.unique()))
+    dSTF['errCodes'] = errCodes
+    logger.info('{func:s}: found error codes {errc!s}'.format(errc=errCodes, func=cFuncName))
+
+    # inform user
     logger.info('{func:s}: read STF file {file:s}, added UTM coordiantes and GNSS time'.format(file=stfFile, func=cFuncName))
 
     return dfSTF
@@ -204,6 +209,10 @@ def main(argv):
     # save to cvs file
     dSTF['csv'] = os.path.splitext(dSTF['stf'])[0] + '.csv'
     dfGeod.to_csv(dSTF['csv'])
+
+    # plot trajectory
+    logger.info('{func:s}: information:\n{dict!s}'.format(dict=amutils.pretty(dSTF), func=cFuncName))
+    plotcoords.plotUTMSuppressed(dStf=dSTF, dfCrd=dfGeod[['time', 'UTM.E', 'UTM.N', 'Error']], logger=logger)
 
     # plot the UTM coordinates and #SVs
     plotcoords.plotUTMCoords(dStf=dSTF, dfCrd=dfGeod[['time', 'UTM.E', 'UTM.N', 'Height[m]', 'NrSV', 'SignalInfo', 'dist', '2D/3D']], logger=logger)
