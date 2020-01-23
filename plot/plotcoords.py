@@ -277,17 +277,13 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     # (re)set the color iterator
     colorsIter = iter(list(mcolors.TABLEAU_COLORS))
 
-    # plot the E-N coordinates according to signals used and 2D/3D mode
-    for st, lstSTNames in dStf['signals'].items():
-        stNames = ",".join(lstSTNames)
-        for mode in '3D', '2D':
-            lblTxt = '{st:s} ({mode:s})'.format(st=stNames, mode=mode)
-            logger.debug('{func:s}: plotting {stm:s}'.format(stm=lblTxt, func=cFuncName))
+    # plot the E-N coordinates according to PVT Error mode
+    for errCode in dStf['errCodes']:
+        logger.debug('{func:s}: plotting {errc:d}'.format(errc=errCode, func=cFuncName))
 
-            # get the index for this sigType & mode
-            idx = dIdx[st][mode]
-            ax.plot(dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx], color=next(colorsIter), linestyle='', marker='.', label=lblTxt, markersize=2)
-
+        # get the index for this error code
+        idx = dIdx[errCode]
+        ax.plot(dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx], color=next(colorsIter), linestyle='', marker='.', label='error code {:d}'.format(errCode), markersize=4)
 
     # ax.plot(dfCrd['UTM.E'].iloc[idx3D], dfCrd['UTM.N'].iloc[idx3D], color='blue', label='3D mode', markersize=2, linestyle='', marker='.')
     # ax.plot(dfCrd['UTM.E'].iloc[idx2D], dfCrd['UTM.N'].iloc[idx2D], color='red', label='2D mode', markersize=2, linestyle='', marker='.')
@@ -301,7 +297,7 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     # annotate with position of marker
     logger.info('{func:s}: marker location = {E!s} {N!s}'.format(E=dStf['marker']['UTM.E'], N=dStf['marker']['UTM.N'], func=cFuncName))
     E, N = dStf['marker']['UTM.E'], dStf['marker']['UTM.N']
-    ax.annotate('marker', xy=(E,N), xytext=(E-200,N), xycoords='data', horizontalalignment='right', verticalalignment='center', color='magenta')
+    ax.annotate('marker', xy=(E,N), xytext=(E-2, N), xycoords='data', horizontalalignment='right', verticalalignment='center', color='magenta')
     ax.scatter(E, N, color='magenta', marker='^')
 
     # draw circles for distancd evaluation on plot
