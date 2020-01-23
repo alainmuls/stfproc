@@ -278,12 +278,12 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     colorsIter = iter(list(mcolors.TABLEAU_COLORS))
 
     # plot the E-N coordinates according to PVT Error mode
-    for errCode in dStf['errCodes']:
-        logger.debug('{func:s}: plotting {errc:d}'.format(errc=errCode, func=cFuncName))
+    for errCode, errCodeName in dStf['errCodes'].items():
+        logger.debug('{func:s}: plotting {errc:d}: {errtxt:s}'.format(errc=errCode, errtxt=errCodeName, func=cFuncName))
 
         # get the index for this error code
         idx = dIdx[errCode]
-        ax.plot(dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx], color=next(colorsIter), linestyle='', marker='.', label='error code {:d}'.format(errCode), markersize=4)
+        ax.plot(dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx], color=next(colorsIter), linestyle='', marker='.', label=errCodeName, markersize=4)
 
     # ax.plot(dfCrd['UTM.E'].iloc[idx3D], dfCrd['UTM.N'].iloc[idx3D], color='blue', label='3D mode', markersize=2, linestyle='', marker='.')
     # ax.plot(dfCrd['UTM.E'].iloc[idx2D], dfCrd['UTM.N'].iloc[idx2D], color='red', label='2D mode', markersize=2, linestyle='', marker='.')
@@ -294,23 +294,17 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     for idx, text in zip(idxTime, annText):
         ax.annotate(text, (dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx]), textcoords='offset points', xytext=(0,10), ha='center')
 
-    # annotate with position of marker
-    logger.info('{func:s}: marker location = {E!s} {N!s}'.format(E=dStf['marker']['UTM.E'], N=dStf['marker']['UTM.N'], func=cFuncName))
-    E, N = dStf['marker']['UTM.E'], dStf['marker']['UTM.N']
-    ax.annotate('marker', xy=(E,N), xytext=(E-2, N), xycoords='data', horizontalalignment='right', verticalalignment='center', color='magenta')
-    ax.scatter(E, N, color='magenta', marker='^')
+    # draw circles for zones on plot
+    for zone, zone_crd in dStf['zones'].items():
+        E, N, R = zone_crd['UTM.E'], zone_crd['UTM.N'], zone_crd['radius']
 
-    # draw circles for distancd evaluation on plot
-    for radius in range(5, 50, 5):
-        newCircle = plt.Circle((E,N), radius*1000, color='red', fill=False, clip_on=True, alpha=0.4)
+        # draw marker & cricle
+        ax.scatter(E, N, color='black', marker='^', alpha=0.4)
+        newCircle = plt.Circle((E, N), R, color='black', fill=False, clip_on=True)
         ax.add_artist(newCircle)
-        # annotate the radius
-        ax.annotate('{radius:d} km'.format(radius=radius), xy=(E+radius*1000*np.cos(np.pi*5/4), N+radius*1000*np.sin(np.pi*5/4)), textcoords='data', xycoords='data', clip_on=True, color='blue', alpha=0.4)
-    for radius in 2.5, 7.5:
-        newCircle = plt.Circle((E,N), radius*1000, color='red', fill=False, clip_on=True, alpha=0.4)
-        ax.add_artist(newCircle)
-        # annotate the radius
-        ax.annotate('{radius:.1f} km'.format(radius=radius), xy=(E+radius*1000*np.cos(np.pi*5/4), N+radius*1000*np.sin(np.pi*5/4)), textcoords='data', xycoords='data', clip_on=True, color='blue', alpha=0.4)
+
+        # annotate the markers
+        ax.annotate('{zone:s}'.format(zone=zone), xy=(E + 2, N), textcoords='data', xycoords='data', clip_on=True, color='black', alpha=0.4)
 
     # name y-axis
     ax.set_xlabel('UTM.E', fontsize=14)
@@ -326,7 +320,7 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     # Save the file in dir png
     pltDir = os.path.join(dStf['dir'], 'png')
     os.makedirs(pltDir, exist_ok=True)
-    pltName = '{syst:s}-UTMscatter.png'.format(syst=dStf['gnss'].replace(' ', '-'))
+    pltName = '{syst:s}-UTMsuppressed.png'.format(syst=dStf['gnss'].replace(' ', '-'))
     pltName = os.path.join(pltDir, pltName)
     fig.savefig(pltName, dpi=100)
     logger.info('{func:s}: plot saved as {name:s}'.format(name=pltName, func=cFuncName))

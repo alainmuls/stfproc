@@ -46,6 +46,20 @@ dFrontEnd = {
  9: 'unknown am'
 }
 
+dPVTErrorCode = {
+    0: 'no error.',
+    1: 'not enough meas',
+    2: 'not enough ephem',
+    3: 'DOP too large',
+    4: 'squared residuals too large',
+    5: 'no convergence',
+    6: 'not enough measurements after outlier rejection',
+    7: 'position output prohibited due to export laws',
+    8: 'not enough differential corrections available',
+    9: 'base station coordinates unavailable',
+    127: 'PNT actively suppressed'
+}
+
 
 def isPowerOfTwo(n: int) -> bool:
     """

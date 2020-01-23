@@ -84,7 +84,18 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     amutils.logHeadTailDataFrame(df=dfSTF, dfName=dSTF['stf'], callerName=cFuncName, logger=logger)
     dfSTF.reset_index(inplace=True)
 
-    # convert lat/lon to degrees
+    # zone definition
+    dZone = {}
+    dZone['allow'] = {'lat': 50.934519, 'lon': 4.466130, 'radius': 300}
+    dZone['deny'] = {'lat': 50.934877, 'lon': 4.466280, 'radius': 200}
+
+    # convert lat/lon to UTM
+    for zone, zone_crd in dZone.items():
+        dZone[zone]['UTM.E'], dZone[zone]['UTM.N'], dZone[zone]['UTM.Z'], dZone[zone]['UTM.L'] = UTM.from_latlon(dZone[zone]['lat'], dZone[zone]['lon'])
+
+    # add to dict dStf
+    dSTF['zones'] = dZone
+
     dfSTF['lat'] = np.degrees(dfSTF['Latitude[rad]'])
     dfSTF['lon'] = np.degrees(dfSTF['Longitude[rad]'])
     # convert the GPS time to UTC
@@ -128,7 +139,7 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
             if (sigType & (0b1 << k)) != 0:
                 logger.info('{func:s}: found signal {ssnst:s}'.format(ssnst=v, func=cFuncName))
                 # add name to the used signal types
-                sigTypeNames.append(v[4:])
+                sigTypeNames.append(v)
 
         # add signal to the dST dict
         dST[sigType] = sigTypeNames
@@ -147,8 +158,19 @@ def readSTFGeodetic(stfFile: str, logger: logging.Logger) -> pd.DataFrame:
     logger.info('{func:s}: found signals {signals!s}'.format(signals=dSTF['signals'], func=cFuncName))
 
     # find out what PVT error codess we have
+    dErrCodes = {}
     errCodes = list(set(dfSTF.Error.unique()))
-    dSTF['errCodes'] = errCodes
+    for errCode in errCodes:
+        logger.debug('{func:s}: searching name for error codes {errc:d}'.format(errc=errCode, func=cFuncName))
+
+        for k, v in ssnst.dPVTErrorCode.items():
+            if (errCode == k):
+                logger.info('{func:s}: found error code {errc:s}'.format(errc=colored(v, 'green'), func=cFuncName))
+                # add error code to errCodeNames
+                dErrCodes[errCode] = v
+
+    dSTF['errCodes'] = dErrCodes
+
     logger.info('{func:s}: found error codes {errc!s}'.format(errc=errCodes, func=cFuncName))
 
     # inform user
@@ -191,7 +213,7 @@ def main(argv):
         dMarker['UTM.E'], dMarker['UTM.N'], dMarker['UTM.Z'], dMarker['UTM.L'] = UTM.from_latlon(dMarker['lat'], dMarker['lon'])
 
     logger.info('{func:s}: marker coordinates = {crd!s}'.format(func=cFuncName, crd=dMarker))
-    amc.dRTK['marker'] = dMarker
+    dSTF['marker'] = dMarker
 
     # # add jammer location coordinates
     # dMarker = {}
@@ -200,7 +222,7 @@ def main(argv):
     # dMarker['geod']['lon'] = 4.15528  # 4.155056
     # dMarker['UTM'] = {}
     # dMarker['UTM.E'], dMarker['UTM.N'], dMarker['UTM.Z'], dMarker['UTM.L'] = utm.from_latlon(dMarker['geod']['lat'], dMarker['geod']['lon'])
-    dSTF['marker'] = dMarker
+    # dSTF['marker'] = dMarker
 
     # read in the STF file using included header information
     dfGeod = readSTFGeodetic(stfFile=fileSTF, logger=logger)
