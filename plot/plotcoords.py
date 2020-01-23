@@ -258,15 +258,13 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
         dIdx[errCode] = dfCrd.index[dfCrd['Error'] == errCode]
         logger.info('{func:s}: list of indices dIdx[{errc:d}] = {idx!s}'.format(errc=errCode, idx=dIdx[errCode], func=cFuncName))
 
-    sys.exit(66)
-
     # convert time column to seconds
     dsTime = dfCrd['time']-dfCrd['time'].iloc[0]
     dfCrd['sec'] = dsTime.dt.total_seconds()
     amutils.logHeadTailDataFrame(df=dfCrd, dfName='dfCrd plot scatter', callerName=cFuncName, logger=logger)
 
     # get index when sec is multiple of 10 minutes
-    idxTime = dfCrd.index[dfCrd['sec'] % 600 == 0]
+    idxTime = dfCrd.index[dfCrd['sec'] % 300 == 0]
     logger.debug('{func:s}: indices multiple of 300s = {idx!s}'.format(idx=idxTime, func=cFuncName))
 
     fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -275,10 +273,6 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
 
     # copyright this
     ax.annotate(r'$\copyright$ Alain Muls (alain.muls@mil.be)', xy=(1, 0), xycoords='axes fraction', xytext=(0, -45), textcoords='offset pixels', horizontalalignment='right', verticalalignment='bottom', weight='strong', fontsize='medium')
-
-    # get the index for 2D/3D
-    idx3D = dfCrd.index[dfCrd['2D/3D'] == 0]
-    idx2D = dfCrd.index[dfCrd['2D/3D'] == 1]
 
     # (re)set the color iterator
     colorsIter = iter(list(mcolors.TABLEAU_COLORS))
