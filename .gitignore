@@ -1,4 +1,6 @@
 # Specify filepatterns you want git to ignore.
 
-*.log
+**/*.pyc
 *.sublime-workspace
+**/*.log
+*.log
