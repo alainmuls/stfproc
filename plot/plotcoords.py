@@ -306,6 +306,8 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     #     # annotate the markers
     #     ax.annotate('{zone:s}'.format(zone=zone), xy=(E + 2, N), textcoords='data', xycoords='data', clip_on=True, color='black', alpha=0.4)
 
+        break
+
     # name y-axis
     ax.set_xlabel('UTM.E', fontsize=14)
     ax.set_ylabel('UTM.N', fontsize=14)
