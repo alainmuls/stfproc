@@ -294,17 +294,17 @@ def plotUTMSuppressed(dStf: dict, dfCrd: pd.DataFrame, logger=logging.Logger):
     for idx, text in zip(idxTime, annText):
         ax.annotate(text, (dfCrd['UTM.E'].iloc[idx], dfCrd['UTM.N'].iloc[idx]), textcoords='offset points', xytext=(0,10), ha='center')
 
-    # draw circles for zones on plot
-    for zone, zone_crd in dStf['zones'].items():
-        E, N, R = zone_crd['UTM.E'], zone_crd['UTM.N'], zone_crd['radius']
+    # # draw circles for zones on plot
+    # for zone, zone_crd in dStf['zones'].items():
+    #     E, N, R = zone_crd['UTM.E'], zone_crd['UTM.N'], zone_crd['radius']
 
-        # draw marker & cricle
-        ax.scatter(E, N, color='black', marker='^', alpha=0.4)
-        newCircle = plt.Circle((E, N), R, color='black', fill=False, clip_on=True)
-        ax.add_artist(newCircle)
+    #     # draw marker & cricle
+    #     ax.scatter(E, N, color='black', marker='^', alpha=0.4)
+    #     newCircle = plt.Circle((E, N), R, color='black', fill=False, clip_on=True)
+    #     ax.add_artist(newCircle)
 
-        # annotate the markers
-        ax.annotate('{zone:s}'.format(zone=zone), xy=(E + 2, N), textcoords='data', xycoords='data', clip_on=True, color='black', alpha=0.4)
+    #     # annotate the markers
+    #     ax.annotate('{zone:s}'.format(zone=zone), xy=(E + 2, N), textcoords='data', xycoords='data', clip_on=True, color='black', alpha=0.4)
 
     # name y-axis
     ax.set_xlabel('UTM.E', fontsize=14)
